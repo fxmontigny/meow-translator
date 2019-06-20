@@ -2,7 +2,7 @@
   <div class="translator-panel">
     <p>TODO Record button</p>
     <div contenteditable="true" v-html="humanMessage" @focusout="onHumanMessageChange"></div>
-    <button @click="onTranslate">Translate</button>
+    <button @click="onTranslate" color="primary">Translate</button>
     <p>----- To ------</p>
     <div class="translated-text" v-html="catMessage"></div>
     <p>TODO sound button</p>
@@ -42,5 +42,13 @@ export default {
 .translator-panel {
   @include flex();
   @include flex-direction(column);
+  @include align-items(center);
+
+  div[contentEditable] {
+    min-width: 50%;
+    padding: 8px;
+    border: 1px solid grey;
+    margin-bottom: 16px;
+  }
 }
 </style>

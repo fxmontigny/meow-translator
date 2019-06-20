@@ -1,3 +1,15 @@
+$primary: #ff797e;
+$grey: #b8bcc7;
+$white: white;
+$semi-dark-grey: #8f939d;
+$hover-state: rgba(255, 255, 255, 0.4);
+$click-state: rgba(15, 20, 51, 0.4);
+$disable-state: rgba(184, 188, 199, 0.9);
+
+$primaryHover: mix($primary, $hover-state);
+$primaryActive: mix($primary, $click-state);
+$primaryDisable: mix($primary, $disable-state);
+
 /** FUNCTIONS **/
 
 @mixin user-select($value) {

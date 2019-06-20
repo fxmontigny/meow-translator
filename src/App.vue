@@ -15,8 +15,9 @@ export default {
 };
 </script>
 
-<style>
-@import "./assets/styles/global.scss";
+<style lang="scss">
+@import "./assets/styles/buttons";
+@import "./assets/styles/global";
 
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;

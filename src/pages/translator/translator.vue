@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Meow translator</h1>
-    <p>This is not a certify translator.</p>
+    <p>This is not a certified translator.</p>
     <p>But you can try to talk with your cat, just for fun.😅</p>
     <div class="translator">
       <TranslatorPanel/>

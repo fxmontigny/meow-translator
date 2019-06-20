@@ -1,0 +1,161 @@
+@import 'utils';
+@import 'animations';
+
+$button-radius-one: 4px;
+/** TEMPLATABLE FUNCTION **/
+
+@mixin buttonColorTemplate($name, $color) {
+	&[color='#{$name}']:not([outline]):not([text-color]) {
+		background-color: $color;
+		&[animation] {
+			&:not([disable='true']) {
+				@include animationColorSlide(
+					mix($color, $hover-state),
+					mix($color, $click-state)
+				);
+			}
+		}
+		&:not([disable='true']) {
+			&:not([animation]) {
+				&:hover,
+				&.hover {
+					background-color: mix($color, $hover-state);
+				}
+				&:active,
+				&.active {
+					background-color: mix($color, $click-state);
+				}
+			}
+		}
+		&[disable]:not([disable='false']) {
+			background-color: mix($color, $disable-state);
+		}
+	}
+	&[color='#{$name}'][outline] {
+		border: 1px solid $color;
+		background-color: transparent;
+		&:not([disable='true']) {
+			&:not([animation]) {
+				&:hover,
+				&.hover {
+					border-color: mix($color, $hover-state);
+				}
+				&:active,
+				&.active {
+					border-color: mix($color, $click-state);
+				}
+			}
+		}
+		&[disable]:not([disable='false']) {
+			border-color: mix($color, $disable-state);
+		}
+	}
+	&[color='#{$name}'][text-color] {
+		color: $color;
+		background: white;
+		&:not([disable='true']) {
+			&:not([animation]) {
+				&:hover,
+				&.hover {
+					color: mix($color, $hover-state);
+				}
+				&:active,
+				&.active {
+					color: mix($color, $click-state);
+				}
+			}
+		}
+		&[disable]:not([disable='false']) {
+			color: mix($color, $disable-state);
+		}
+	}
+}
+
+// BASE
+button {
+	position: relative;
+	@include border-radius($button-radius-one);
+	@include inline-flex();
+	@include align-items(center);
+	line-height: 48px;
+	padding: 0 24px;
+	border: none;
+	color: $white;
+	@include transition(all);
+	font-weight: 600;
+	cursor: pointer;
+	outline: none;
+	box-sizing: border-box;
+	&.no-border-top-left {
+		@include border-radius-top-left(0);
+	}
+	&.no-border-bottom-left {
+		@include border-radius-bottom-left(0);
+	}
+	div {
+		@include flex();
+		@include align-items(center);
+		@include border-radius($button-radius-one);
+	}
+	i {
+		margin-right: 16px;
+	}
+	&.no-i-margin i {
+		margin-right: 0;
+	}
+	&[enter-line]:not([enter-line='false']) {
+		@include flex-direction(column);
+		line-height: 20px;
+		min-height: 48px;
+		i {
+			margin: 0 0 1px 0;
+		}
+	}
+	@include buttonColorTemplate('primary', $primary);
+	@include buttonColorTemplate('default', $grey);
+	@include buttonColorTemplate(
+		'semi-dark-grey',
+		$semi-dark-grey
+	); // Round button
+	&[round] {
+		width: 32px;
+		height: 32px;
+		padding: 0;
+		@include flex();
+		@include align-items(center);
+		@include justify-content(center);
+		background-color: $primary;
+		border-radius: 50px;
+		i {
+			margin: 0;
+		}
+		&[animation] {
+			@include animationColorSlide($primaryHover, $primaryActive);
+		}
+		&:not([disable]) {
+			&:not([animation]) {
+				&:hover {
+					background-color: $primaryHover;
+				}
+				&:active {
+					background-color: $primaryActive;
+				}
+			}
+		}
+		&[disable] {
+			background-color: $primaryDisable;
+		}
+	}
+	&[background='no'] {
+		background-color: transparent !important;
+		&:hover {
+			background-color: transparent !important;
+			opacity: 0.8;
+		}
+	}
+	/** SIZE **/
+	&[small] {
+		line-height: 32px;
+		padding: 0 24px;
+	}
+}

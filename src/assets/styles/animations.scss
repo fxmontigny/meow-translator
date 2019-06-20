@@ -1,0 +1,37 @@
+@import 'utils';
+
+@mixin animationColorSlide($colorHover, $colorActive) {
+	transition: 0.3s;
+	overflow: hidden;
+	z-index: 0;
+
+	&::after {
+		z-index: -1;
+		content: '';
+		position: absolute;
+		left: -10%;
+		width: 0;
+		height: 120%;
+		bottom: 0;
+		transition: 0.3s;
+		transform: skewX(15deg);
+	}
+	&:hover {
+		&::after {
+			background: $colorHover;
+			width: 120%;
+		}
+	}
+
+	&:active {
+		background: $colorActive;
+		&::after {
+			width: 0;
+		}
+	}
+}
+
+body .animated {
+	@include animation-duration(0.25s);
+}
+
