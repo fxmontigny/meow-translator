@@ -37,10 +37,46 @@ export default class CatTranslator {
 	}
 
 	static wordToMeow(word) {
-		if (word !== '') {
-			return 'Mi';
+		let stringToReturn = '';
+		const charsList = ['m', 'm', 'm', 'm', 'e', 'e', 'e', 'o', 'o', 'w'];
+
+		switch (word.length) {
+			case 0:
+				stringToReturn = '';
+				break;
+			case 1:
+				stringToReturn = this.randownFrom(['i', 'a', 'u']);
+				break;
+			case 2:
+				stringToReturn = this.randownFrom(['mi', 'iu', 'yu']);
+				break;
+			case 3:
+				stringToReturn = this.randownFrom(['mia', 'miu', 'mou']);
+				break;
+			default:
+				for (let i = 0; i < word.length; i++) {
+					const currentList = charsList.slice(
+						i === 0 ? 0 : charsList.lastIndexOf(charsList[i - 1]) + 1
+					);
+					stringToReturn += this.randownFrom(currentList);
+				}
+				break;
 		}
 
-		return '';
+		// make uppercase
+		stringToReturn = stringToReturn
+			.split('')
+			.map((c, index) => {
+				const isUpper = word[index] === word[index].toUpperCase();
+				return isUpper ? c.toUpperCase() : c;
+			})
+			.join('');
+
+		return stringToReturn;
+	}
+
+	static randownFrom(list) {
+		const randown = Math.floor(Math.random() * Math.floor(list.length));
+		return list[randown];
 	}
 }
