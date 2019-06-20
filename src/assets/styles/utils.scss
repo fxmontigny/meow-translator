@@ -1,0 +1,197 @@
+/** FUNCTIONS **/
+
+@mixin user-select($value) {
+	user-select: $value;
+	-moz-user-select: $value;
+	-ms-user-select: $value;
+	-webkit-user-select: $value;
+}
+
+@mixin flex() {
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+}
+
+@mixin align-content($position) {
+	-webkit-align-content: $position;
+	align-content: $position;
+}
+
+@mixin inline-flex() {
+	display: -ms-inline-flexbox;
+	display: -webkit-inline-flex;
+	display: inline-flex;
+}
+
+@mixin flex-wrap($position) {
+	-webkit-flex-wrap: $position;
+	-ms-flex-wrap: $position;
+	flex-wrap: $position;
+}
+
+@mixin justify-content($position) {
+	-webkit-justify-content: $position;
+	moz-justify-content: $position;
+	justify-content: $position;
+}
+
+@mixin align-self($position) {
+	align-self: $position;
+	-webkit-align-self: $position;
+}
+
+@mixin align-items($position) {
+	-webkit-align-items: $position;
+	-ms-flex-align-items: $position;
+	align-items: $position;
+}
+
+@mixin flex-direction($direction) {
+	-webkit-flex-direction: $direction;
+	-ms-flex-direction: $direction;
+	flex-direction: $direction;
+}
+
+@mixin border-radius($size) {
+	-webkit-border-radius: $size;
+	-moz-border-radius: $size;
+	border-radius: $size;
+}
+
+@mixin border-radius-top-left($size) {
+	-webkit-border-top-left-radius: $size;
+	-moz-border-top-left-radius: $size;
+	border-top-left-radius: $size;
+}
+
+@mixin border-radius-top-right($size) {
+	-webkit-border-top-right-radius: $size;
+	-moz-border-top-right-radius: $size;
+	border-top-right-radius: $size;
+}
+
+@mixin border-radius-bottom-left($size) {
+	-webkit-border-bottom-left-radius: $size;
+	-moz-border-bottom-left-radius: $size;
+	border-bottom-left-radius: $size;
+}
+
+@mixin border-radius-bottom-right($size) {
+	-webkit-border-bottom-right-radius: $size;
+	-moz-border-bottom-right-radius: $size;
+	border-bottom-right-radius: $size;
+}
+
+@mixin transition($type) {
+	-webkit-transition: $type 0.15s ease-in-out;
+	-moz-transition: $type 0.15s ease-in-out;
+	-o-transition: $type 0.15s ease-in-out;
+	transition: $type 0.15s ease-in-out;
+}
+
+@mixin transitionAndType($target, $type) {
+	-webkit-transition: $target 0.15s $type;
+	-moz-transition: $target 0.15s $type;
+	-o-transition: $target 0.15s $type;
+	transition: $target 0.15s $type;
+}
+
+@mixin transitionDuration($duration) {
+	-webkit-transition-duration: $duration;
+	-moz-transition-duration: $duration;
+	-o-transition-duration: $duration;
+	transition-duration: $duration;
+}
+
+@mixin transitionDelay($duration) {
+	-webkit-transition-delay: $duration;
+	-moz-transition-delay: $duration;
+	-o-transition-delay: $duration;
+	transition-delay: $duration;
+}
+
+@mixin animation-duration($duration) {
+	-webkit-animation-duration: $duration;
+	animation-duration: $duration;
+}
+
+@mixin animation-delay($duration) {
+	-webkit-animation-delay: $duration;
+	animation-delay: $duration;
+}
+
+@mixin rotate($degree) {
+	-webkit-transform: rotate($degree);
+	-moz-transform: rotate($degree);
+	transform: rotate($degree);
+}
+
+@mixin transform($transformation) {
+	-webkit-transform: $transformation;
+	-moz-transform: $transformation;
+	-o-transform: $transformation;
+	-ms-transform: $transformation;
+	transform: $transformation;
+}
+
+@mixin transition-property($types...) {
+	$max: length($types);
+	$typesString: '';
+	@for $i from 1 through $max {
+		$typesString: #{$typesString + nth($types, $i)};
+		@if $i < $max {
+			$typesString: #{$typesString + ', '};
+		}
+	}
+
+	-webkit-transition-property: $typesString;
+	-moz-transition-property: $typesString;
+	-o-transition-property: $typesString;
+	transition-property: $typesString;
+}
+
+// animate with prefixes
+// @include animation(ANIMATIONNAME LENGTH REPEAT INOUT,ANIMATIONNAME LENGTH REPEAT INOUT,ANIMATIONNAME LENGTH REPEAT INOUT);
+@mixin animation($animate...) {
+	$max: length($animate);
+	$animations: '';
+	@for $i from 1 through $max {
+		$animations: #{$animations + nth($animate, $i)};
+		@if $i < $max {
+			$animations: #{$animations + ', '};
+		}
+	}
+	-webkit-animation: $animations;
+	-moz-animation: $animations;
+	-o-animation: $animations;
+	animation: $animations;
+}
+
+// animation keyframes
+// @include keyframes(ANIMATIONNAME) {
+//   0% { ATTRIBUTE: VALUE; ATTRIBUTE: VALUE; }
+//   50% { ATTRIBUTE: VALUE; ATTRIBUTE: VALUE; }
+//   100% { ATTRIBUTE: VALUE; ATTRIBUTE: VALUE; }
+// }
+@mixin keyframes($animationName) {
+	@-webkit-keyframes #{$animationName} {
+		@content;
+	}
+	@-moz-keyframes #{$animationName} {
+		@content;
+	}
+	@-o-keyframes #{$animationName} {
+		@content;
+	}
+	@keyframes #{$animationName} {
+		@content;
+	}
+}
+
+@mixin filter-blur($pixels) {
+	filter: blur($pixels);
+	-o-filter: blur($pixels);
+	-moz-filter: blur($pixels);
+	-webkit-filter: blur($pixels);
+}
