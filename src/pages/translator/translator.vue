@@ -1,13 +1,15 @@
 <template>
-  <div>
-    <h1>Meow translator</h1>
-    <p>This is not a certified translator.</p>
-    <p>But you can try to talk with your cat, just for fun.😅</p>
-    <div class="translator">
+  <div class="translator-wrapper">
+    <div class="left-panel">
+      <h1>Meow translator</h1>
+      <p>
+        This is not a certified translator.
+        <br>But you can try to talk with your cat, just for fun.😅
+      </p>
       <TranslatorPanel/>
-      <div class="background-panel"></div>
+      <div class="copyright">Copyright 2019</div>
     </div>
-    <div class="copyright">Copyright 2019</div>
+    <div class="background-panel"></div>
   </div>
 </template>
 
@@ -45,18 +47,24 @@ export default {
 <style scoped lang="scss">
 @import "../../assets/styles/utils";
 
-.translator {
+.translator-wrapper {
   @include flex();
+  height: 100%;
 
   > div {
     flex: 1;
+
+    &.left-panel {
+      background-color: #e9f1ff;
+      padding: 32px 32px 16px 32px;
+    }
   }
 }
 
 .background-panel {
   background-image: url("../../assets/background.jpg");
-  background-size: auto 100%;
-  background-position: top center;
+  background-size: contain;
+  background-position: center;
   background-repeat: no-repeat;
 }
 </style>
