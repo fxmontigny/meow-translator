@@ -6,8 +6,7 @@
         This is not a certified translator.
         <br>But you can try to talk with your cat, just for fun.😅
       </p>
-      <TranslatorPanel/>
-      <div class="copyright">Copyright 2019</div>
+      <TranslatorPanel class="TranslatorPanel"/>
     </div>
     <div class="background-panel"></div>
   </div>
@@ -52,19 +51,36 @@ export default {
   height: 100%;
 
   > div {
-    flex: 1;
-
     &.left-panel {
+      flex: 40;
+      max-width: 450px;
       background-color: #e9f1ff;
       padding: 32px 32px 16px 32px;
+      @include flex();
+      @include flex-direction(column);
+
+      .TranslatorPanel {
+        flex: 1;
+      }
+    }
+
+    &.background-panel {
+      flex: 60;
+      background-image: url("../../assets/background.jpg");
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    @media screen and (max-width: 900px) {
+      &.left-panel {
+        max-width: none;
+      }
+
+      &.background-panel {
+        display: none;
+      }
     }
   }
-}
-
-.background-panel {
-  background-image: url("../../assets/background.jpg");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 </style>
